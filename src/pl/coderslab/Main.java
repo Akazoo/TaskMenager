@@ -1,7 +1,6 @@
 package pl.coderslab;
 
 import org.apache.commons.lang3.ArrayUtils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -72,27 +71,6 @@ public class Main {
 
     } //ok
 
-    public static void taskList() {
-        File taskList = new File("tasks.csv");
-        try {
-            int count = 0;
-            Scanner loadTask = new Scanner(taskList);
-            System.out.println(ConsoleColors.BLUE + "Tasks:" + "\n" + "Name-Date-Importance");
-            while (loadTask.hasNextLine()) {
-                String line = loadTask.nextLine().replace(",", " ");
-                System.out.println(ConsoleColors.YELLOW + count + ". " + ConsoleColors.RESET + line);
-                count++;
-            }
-        } catch (FileNotFoundException e) {
-            try {
-                taskList.createNewFile();
-                System.out.println("File not found, so it has been created just fot You.");
-            } catch (IOException ex) {
-                System.out.println("File can not be created. Try do it manually (TaskMenager/tasks.csv).");
-            }
-        }
-    } ///// delete
-
     public static void addTask() {
 
         Scanner scanner = new Scanner(System.in);
@@ -111,7 +89,7 @@ public class Main {
 
     } // ok
 
-    public static void arrayRefresh() {
+    public static void anotherWAy() {
         /*String[][] tasks2 = new String[0][];
         File file = new File("tasks.csv");
         try {
@@ -125,42 +103,8 @@ public class Main {
             e.printStackTrace();
 
             tasks = tasks2;*/
-        File file = new File("tasks.csv");
-        int length1 = 0;
-        try {
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                length1++;
-            }
-        } catch (FileNotFoundException e) {
-            try {
-                file.createNewFile();
-                System.out.println("File not found, so it has been created just fot You.");
-            } catch (IOException ex) {
-                System.out.println("File can not be created. Try do it manually (TaskMenager/tasks.csv).");
-            }
-        }
 
-        tasks = new String[length1][];
-        /*for (int i = 0; i < length1; i++) {
-            try {
-                Scanner scanner = new Scanner(file);
-                tasks[i] = scanner.nextLine().split(",");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        }*/
-        try {
-            int i = 0;
-            Scanner scanner = new Scanner(file);
-            while (scanner.hasNextLine()) {
-                tasks[i] = scanner.nextLine().split(",");
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    } ///// delete
+    } // druga mozliwosc
 
     public static void deleteTask() {
 
@@ -184,7 +128,7 @@ public class Main {
             }
 
         }
-    } // !work
+    } // ok
 
     public static void tasksListArray() {
         System.out.println(ConsoleColors.BLUE + "Tasks:" + "\n" + "Name-Date-Importance");
@@ -197,6 +141,25 @@ public class Main {
             count++;
             System.out.println();
         }
+            /* File taskList = new File("tasks.csv");
+        try {
+            int count = 0;
+            Scanner loadTask = new Scanner(taskList);
+            System.out.println(ConsoleColors.BLUE + "Tasks:" + "\n" + "Name-Date-Importance");
+            while (loadTask.hasNextLine()) {
+                String line = loadTask.nextLine().replace(",", " ");
+                System.out.println(ConsoleColors.YELLOW + count + ". " + ConsoleColors.RESET + line);
+                count++;
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                taskList.createNewFile();
+                System.out.println("File not found, so it has been created just fot You.");
+            } catch (IOException ex) {
+                System.out.println("File can not be created. Try do it manually (TaskMenager/tasks.csv).");
+            }
+        }
+        */ // zaciagniecie danych prosto z pliku
     } // ok
 
     public static void save() {
@@ -216,7 +179,7 @@ public class Main {
         } catch (IOException ex) {
             System.out.println("Nie można zapisać pliku.");
         }
-    } // ok/!
+    } // ok
 
     public static void csvToArray() {
         Path path = Paths.get("tasks.csv");
