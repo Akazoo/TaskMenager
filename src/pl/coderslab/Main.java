@@ -11,7 +11,7 @@ public class Main {
     static String[][] tasks;
 
     public static void main(String[] args) {
-        tasks = List();
+
         Scanner scanner = new Scanner(System.in);
 
         WelecomeScreen();
@@ -25,10 +25,10 @@ public class Main {
             case "remove":
                 break;
             case "list":
-                System.out.println(Arrays.toString(List()));
+                taskList();
                 break;
             case "exit":
-                System.out.println(ConsoleColors.RED + "Bye, Bye. See you next time");
+                System.out.println(ConsoleColors.RED + "Bye, Bye. See you next time :)");
                 break;
             default:
                 System.out.println(ConsoleColors.CYAN + "Pleas select a correct option.");
@@ -53,23 +53,24 @@ public class Main {
 
     }
 
-    public static String[][] List() {
-
-        Scanner scanner = new Scanner("tasks.csv");
-        String[][] new1;
+    public static void taskList(){
         File taskList = new File("tasks.csv");
         try {
+            int count = 1;
             Scanner loadTask = new Scanner(taskList);
+            System.out.println(ConsoleColors.BLUE + "Tasks:" + "\n" + "Name-Date-Importance");
+            while(loadTask.hasNextLine()){
+                String line = loadTask.nextLine().replace(","," ");
+                System.out.println(ConsoleColors.YELLOW + count + ". " + ConsoleColors.RESET + line);
+                count++;
+            }
         } catch (FileNotFoundException e) {
             try {
                 taskList.createNewFile();
-                System.out.println("Plik nie został znaleziony, więc został dla Ciebie utworzony");
+                System.out.println("File not found, so it has been created just fot You.");
             } catch (IOException ex) {
-                System.out.println("Nie udało się stworzyć pliku. Spróbuj stworzyć plik o nazwie tasks.csv w katalogu TaskMenager recznie.");
+                System.out.println("File can not be created. Try do it manually (TaskMenager/tasks.csv).");
             }
         }
-
-
-        return new1;
     }
 }
