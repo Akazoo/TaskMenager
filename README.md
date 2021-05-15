@@ -1,2 +1,2 @@
 # TaskMenager
-Small App , helps you organise duties.
+(Project 1)Small App , helps you organize duties.
